@@ -1,12 +1,12 @@
 version: '3'
 
-services:
+0;95;0cservices:
   prometheus:
     image: prom/prometheus
     ports:
       - 9090:9090
     volumes:
-      - ./data/prometheus:/prometheus
+      - prometheus-data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
   # grafana:
@@ -14,8 +14,9 @@ services:
   #   ports:
   #     - 3000:3000
   #   volumes:
-  #     - ./data/grafana:/var/lib/grafana
-  #     - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana-plugins:/etc/grafana/plugins
+      - ./grafana.db:/etc/grafana/grafana.db
 
   node-exporter:
     image: prom/node-exporter
@@ -49,3 +50,6 @@ services:
   #     - ./custom-queries.yml:/custom-queries.yaml
   #   depends_on:
   #     - postgres
+
+volumes:
+  prometheus-data:

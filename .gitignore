@@ -1,2 +1,2 @@
-grafana/sessions/
-prometheus
+./grafana.db
+./grafana-plugins
