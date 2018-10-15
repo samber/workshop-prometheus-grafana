@@ -1,0 +1,4 @@
+grafana/sessions/
+grafana/png/
+prometheus/lock
+prometheus/wall
