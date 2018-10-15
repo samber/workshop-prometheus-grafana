@@ -17,6 +17,7 @@ services:
       - ./grafana.db:/var/lib/grafana/grafana.db
       - ./grafana.ini:/etc/grafana/grafana.ini
       - ./grafana-plugins:/var/lib/grafana/plugins
+    user: root
 
   node-exporter:
     image: prom/node-exporter
