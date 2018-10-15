@@ -16,7 +16,7 @@ services:
     volumes:
       - ./grafana.db:/var/lib/grafana/grafana.db
       - ./grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana-plugins:/etc/grafana/plugins
+      - ./grafana-plugins:/var/lib/grafana/plugins
 
   node-exporter:
     image: prom/node-exporter
