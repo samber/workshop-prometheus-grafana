@@ -1,0 +1,18 @@
+global:
+  # default scrape_interval
+  scrape_interval: 30s
+
+scrape_configs:
+
+  - job_name: 'node-exporter'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  - job_name: 'postgresql-exporter'
+    static_configs:
+      - targets: ['postgresql-exporter:9187']
+
+  - job_name: 'nginx-exporter'
+    static_configs:
+      - targets: ['nginx-exporter:9101']

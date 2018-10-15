@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./data/prometheus:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - 9100:9100
+
+  nginx-exporter: # nginx + nginx-exporter inside
+    image: etiennetremel/nginx-prometheus
+    ports:
+      - 8080:80      # serving website
+      - 9101:9101    # metrics
+
+  postgres:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=devfest
+      - POSTGRES_PASSWORD=devfest
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  postgresql-exporter:
+    image: wrouesnel/postgres_exporter
+    ports:
+      - 9187:9187
+    environment:
+      - DATA_SOURCE_NAME=postgresql://devfest:devfest@postgres:5432/devfest?sslmode=disable
+      - PG_EXPORTER_EXTEND_QUERY_PATH=/custom-queries.yaml
+    volumes:
+      - ./custom-queries.yml:/custom-queries.yaml
+    depends_on:
+      - postgres

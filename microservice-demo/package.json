@@ -1,0 +1,13 @@
+{
+    "name": "demo-prometheus-nodejs",
+    "version": "0.1.0",
+    "description": "Prometheus and nodejs example",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "~4.15",
+        "prom-client": "~9.1"
+    },
+    "license": "MIT"
+}

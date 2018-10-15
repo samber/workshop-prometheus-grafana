@@ -1,0 +1,20 @@
+
+user:
+  query: "SELECT COUNT(*) FROM users;"
+  metrics:
+    - count:
+        usage: "COUNTER"
+        description: "Number of users"
+
+post_per_user:
+  query: "SELECT u.id, u.email, COUNT(*) FROM posts p JOIN users u ON u.id = p.user_id GROUP BY u.id;"
+  metrics:
+    - count:
+        usage: "GAUGE"
+        description: "Number of posts per user"
+    - id:
+        usage: "LABEL"
+        description: "User id"
+    - email:
+        usage: "LABEL"
+        description: "User email"
