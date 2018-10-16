@@ -333,7 +333,7 @@ post_per_user_count_count{email="samuel@grep.to",id="fde08ee6-5fb9-4c4f-9b40-dc2
   
   Append to `custom-queries.yml`:
   
-   ```
+```yaml
 user:
   query: "SELECT COUNT(*) FROM users;"
   metrics:
@@ -354,7 +354,7 @@ post_per_user:
         usage: "LABEL"
         description: "User email"
 
-   ```
+```
   
 </details>
 
