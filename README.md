@@ -3,6 +3,8 @@
 
 Welcome !
 
+Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-skdZS7WhWBZQIfb6lE/edit?usp=sharing).
+
 ## 0 - Introduction
 
 ### Full setup (with workshop solutions)
