@@ -268,7 +268,7 @@ Go on [https://grafana.com/dashboards](https://grafana.com/dashboards) and find 
 <details>
   <summary>💡 Solution</summary>
   
-  This exporter looks nice: [https://grafana.com/dashboards/6742](https://grafana.com/dashboards/6742)
+  Those exporters looks nice: [https://grafana.com/dashboards/6742](https://grafana.com/dashboards/6742), [https://grafana.com/dashboards/6995](https://grafana.com/dashboards/6995).
   
 </details>
 
