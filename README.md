@@ -287,11 +287,11 @@ Tips: you should use `sum by(<label>) (<metric>)` and `irate(<metric>)` (cf Prom
 <details>
   <summary>💡 Solution</summary>
   
-  Query graph 1: `sum by (status) (irate(nginx_http_requests_total{status=~"2.."}[30s]))`
+  Query graph 1: `sum by (status) (irate(nginx_http_requests_total{status=~"2.."}[1m]))`
   
   Legend graph 1: `Status: {{ status }}`
   
-  Query graph 2: `sum by (status) (irate(nginx_http_requests_total{status=~"4.."}[30s]))`
+  Query graph 2: `sum by (status) (irate(nginx_http_requests_total{status=~"4.."}[1m]))`
   
   Legend graph 2: `Status: {{ status }}`
   
