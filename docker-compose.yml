@@ -33,8 +33,8 @@ services:
   #   ports:
   #     - 5432:5432
   #   environment:
-  #     - POSTGRES_USER=devfest
-  #     - POSTGRES_PASSWORD=devfest
+  #     - POSTGRES_USER=workshop
+  #     - POSTGRES_PASSWORD=workshop
   #   volumes:
   #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
@@ -43,7 +43,7 @@ services:
   #   ports:
   #     - 9187:9187
   #   environment:
-  #     - DATA_SOURCE_NAME=postgresql://devfest:devfest@postgres:5432/devfest?sslmode=disable
+  #     - DATA_SOURCE_NAME=postgresql://workshop:workshop@postgres:5432/workshop?sslmode=disable
   #     - PG_EXPORTER_EXTEND_QUERY_PATH=/custom-queries.yaml
   #   volumes:
   #     - ./custom-queries.yml:/custom-queries.yaml

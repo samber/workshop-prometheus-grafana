@@ -1,26 +1,26 @@
 
 # Hands on lab : Prometheus and Grafana
 
-Slides [here](https://docs.google.com/presentation/d/1bGfbGWbmxB5GeMTOFkSKeNLE-skdZS7WhWBZQIfb6lE/edit?usp=sharing).
+Slides [here](https://docs.google.com/presentation/d/1kRVMHKNg-UNoBFn3ttq12WgYvRvu6hCnX5ySr_FDNpg/edit?usp=sharing)
 
 ## 0 - Introduction
 
 ### Full setup (with workshop solutions)
 
-- Prometheus: [http://devfest.grep.to:9090](http://devfest.grep.to:9090)
-- Grafana: [http://devfest.grep.to:3000](http://devfest.grep.to:3000) (user: grep / pass: demo)
-- Node-Exporter: [http://devfest.grep.to:9100/metrics](http://devfest.grep.to:9100/metrics)
-- PostgreSQL (2 tables): postgres://devfest:devfest@devfest.grep.to:5432/devfest
-- Postgresql-Exporter: [http://devfest.grep.to:9187/metrics](http://devfest.grep.to:9187/metrics)
-- Nginx: [http://devfest.grep.to:8080](http://devfest.grep.to:8080)
-- Nginx-Exporter: [http://devfest.grep.to:9101/metrics](http://devfest.grep.to:9101/metrics)
+- Prometheus: [http://workshop.grep.to:9090](http://workshop.grep.to:9090)
+- Grafana: [http://workshop.grep.to:3000](http://workshop.grep.to:3000) (user: grep / pass: demo)
+- Node-Exporter: [http://workshop.grep.to:9100/metrics](http://workshop.grep.to:9100/metrics)
+- PostgreSQL (2 tables): postgres://workshop:workshop@workshop.grep.to:5432/workshop
+- Postgresql-Exporter: [http://workshop.grep.to:9187/metrics](http://workshop.grep.to:9187/metrics)
+- Nginx: [http://workshop.grep.to:8080](http://workshop.grep.to:8080)
+- Nginx-Exporter: [http://workshop.grep.to:9101/metrics](http://workshop.grep.to:9101/metrics)
 
 ### Locally with Docker
 
 - Prometheus: [http://localhost:8080](http://localhost:8080)
 - Grafana: [http://localhost:3000](http://localhost:3000) (user: grep / pass: demo)
 - Node-Exporter: [http://localhost:9100/metrics](http://localhost:9100/metrics)
-- PostgreSQL (2 tables): postgres://devfest:devfest@localhost:5432/devfest
+- PostgreSQL (2 tables): postgres://workshop:workshop@localhost:5432/workshop
 - Postgresql-Exporter: [http://localhost:9187/metrics](http://localhost:9187/metrics)
 - Nginx: [http://localhost:8080](https://localhost:8080)
 - Nginx-Exporter: [http://localhost:9101/metrics](http://localhost:9101/metrics)
@@ -57,7 +57,7 @@ Update `prometheus.yml` config file, to scrape node-exporter metrics every 10 se
   <summary>💡 Solution</summary>
 
   ```
-#  
+#
 # /etc/prometheus/prometheus.yml
 #
 
@@ -91,7 +91,7 @@ Metric name is `node_memory_MemFree_bytes`.
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query: `node_memory_MemTotal_bytes{}`
 </details>
 
@@ -101,7 +101,7 @@ Same metric but in GigaBytes ?
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query: `node_memory_MemTotal_bytes{} / 1024 / 1024 / 1024`
 </details>
 
@@ -114,7 +114,7 @@ Tips: `node-exporter` metrics are prefixed by `node_`.
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query: `(node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{}) / node_memory_MemTotal_bytes{} * 100`
 </details>
 
@@ -145,9 +145,9 @@ Create a graph showing current memory usage.
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query: `(node_memory_MemTotal_bytes{} - node_memory_MemFree_bytes{}) / node_memory_MemTotal_bytes{} * 100`
-  
+
   ![](imgs/grafana-new-metric.png)
 </details>
 
@@ -159,7 +159,7 @@ Grafana should be displaying graph in %, such as:
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   ![](imgs/grafana-set-unit.png)
 </details>
 
@@ -173,7 +173,7 @@ Tips: you will need a new metric prefixed by `node_`.
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   ![](imgs/grafana-set-cpu-load-metrics.png)
 </details>
 
@@ -187,10 +187,10 @@ You will need `rate()` PromQL function: [https://prometheus.io/docs/prometheus/l
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query:
   `rate(node_disk_written_bytes_total{device="sda"}[30s])`
-  
+
 </details>
 
 ## 7 - Dashboards from community
@@ -220,7 +220,7 @@ Update Prometheus configuration to scrape Nginx and PostgreSQL exporters.
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   ```yml
 scrape_config:
 
@@ -234,7 +234,7 @@ scrape_config:
     static_configs:
       - targets: ['nginx-exporter:9101']
   ```
-  
+
   Then `docker-compose exec prometheus kill -HUP 1`
 </details>
 
@@ -265,9 +265,9 @@ Go on [https://grafana.com/dashboards](https://grafana.com/dashboards) and find 
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Those exporters looks nice: [https://grafana.com/dashboards/6742](https://grafana.com/dashboards/6742), [https://grafana.com/dashboards/6995](https://grafana.com/dashboards/6995).
-  
+
 </details>
 
 ### 8.4 - Create Nginx dashboards
@@ -281,18 +281,18 @@ Display 2 graphs:
 Tips: you should use `sum by(<label>) (<metric>)` and `irate(<metric>)` (cf PromQL doc).
 
 ![](imgs/grafana-nginx-404.png)
-  
+
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query graph 1: `sum by (status) (irate(nginx_http_requests_total{status=~"2.."}[1m]))`
-  
+
   Legend graph 1: `Status: {{ status }}`
-  
+
   Query graph 2: `sum by (status) (irate(nginx_http_requests_total{status=~"4.."}[1m]))`
-  
+
   Legend graph 2: `Status: {{ status }}`
-  
+
 </details>
 
 ## 9 - Export some business metrics
@@ -330,9 +330,9 @@ post_per_user_count_count{email="samuel@grep.to",id="fde08ee6-5fb9-4c4f-9b40-dc2
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Append to `custom-queries.yml`:
-  
+
 ```yaml
 user:
   query: "SELECT COUNT(*) FROM users;"
@@ -355,7 +355,7 @@ post_per_user:
         description: "User email"
 
 ```
-  
+
 </details>
 
 ### 9.1 - Graph time!
@@ -381,13 +381,13 @@ Table of top 10 users per post count (`topk()`, `sum by(<label>) (<metric>)`):
 
 <details>
   <summary>💡 Solution</summary>
-  
+
   Query 1: `rate(user_count{}[1m])`
-  
+
   Query 2: `increase(user_count{}[$__interval]) > 0`
-  
+
   Query 3: `topk(10, sum by (id, email) (post_per_user_count{}) > 0)`
-  
+
 </details>
 
 ### 9.2 - Expose /metrics from a micro-service
