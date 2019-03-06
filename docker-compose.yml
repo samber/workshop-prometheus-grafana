@@ -1,6 +1,6 @@
 version: '3'
 
-0;95;0cservices:
+services:
   prometheus:
     image: prom/prometheus
     ports:
@@ -16,7 +16,6 @@ version: '3'
   #   volumes:
   #     - ./grafana.db:/etc/grafana/grafana.db
   #     - ./grafana.ini:/etc/grafana/grafana.ini
-  #     - ./grafana-plugins:/var/lib/grafana/plugins/
 
   node-exporter:
     image: prom/node-exporter
@@ -34,8 +33,8 @@ version: '3'
   #   ports:
   #     - 5432:5432
   #   environment:
-  #     - POSTGRES_USER=devfest
-  #     - POSTGRES_PASSWORD=devfest
+  #     - POSTGRES_USER=workshop
+  #     - POSTGRES_PASSWORD=workshop
   #   volumes:
   #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
@@ -44,7 +43,7 @@ version: '3'
   #   ports:
   #     - 9187:9187
   #   environment:
-  #     - DATA_SOURCE_NAME=postgresql://devfest:devfest@postgres:5432/devfest?sslmode=disable
+  #     - DATA_SOURCE_NAME=postgresql://workshop:workshop@postgres:5432/workshop?sslmode=disable
   #     - PG_EXPORTER_EXTEND_QUERY_PATH=/custom-queries.yaml
   #   volumes:
   #     - ./custom-queries.yml:/custom-queries.yaml

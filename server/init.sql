@@ -25,4 +25,4 @@ INSERT INTO users(id, email, password, name) VALUES ('e1c10ca1-60c8-405c-a9f3-3f
 
 INSERT INTO posts(user_id, content) VALUES ('fde08ee6-5fb9-4c4f-9b40-dc2ad69bb855', 'Lorem ipsum');
 INSERT INTO posts(user_id, content) VALUES ('fde08ee6-5fb9-4c4f-9b40-dc2ad69bb855', 'Hello world');
-INSERT INTO posts(user_id, content) VALUES ('e1c10ca1-60c8-405c-a9f3-3ff41456ca9f', 'Devfest is great!');
+INSERT INTO posts(user_id, content) VALUES ('e1c10ca1-60c8-405c-a9f3-3ff41456ca9f', 'Prometheus is great!');
