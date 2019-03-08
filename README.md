@@ -402,3 +402,4 @@ Don't forget to update Prometheus configuration in `prometheus.yml` !
 - Increase data retention (15d by default).
 - Setup alerting with AlertManager and basic rules
 - Setup Prometheus service discovery (consul, etc, dns...) to import configuration automatically
+- Limits: multitenancy - partitionning/sharding - scaling - cron tasks
