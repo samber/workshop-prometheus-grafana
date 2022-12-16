@@ -6,7 +6,7 @@
         "start": "node app.js"
     },
     "dependencies": {
-        "express": "~4.15",
+        "express": "~4.17",
         "prom-client": "~9.1"
     },
     "license": "MIT"
